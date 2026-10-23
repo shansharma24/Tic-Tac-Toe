@@ -13,7 +13,7 @@ const startServer = async () => {
     const server = http.createServer(app);
     const io = setupSocketServer(server);
 
-    server.listen(ENV.PORT, () => {
+    server.listen(ENV.PORT, '0.0.0.0', () => {
       logger.info(`====================================================`);
       logger.info(`🚀 Floyd Technology Hub - Tic-Tac-Toe Server running`);
       logger.info(`🌐 Port: ${ENV.PORT} | Mode: ${ENV.NODE_ENV}`);

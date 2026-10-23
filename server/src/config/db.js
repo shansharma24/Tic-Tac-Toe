@@ -9,6 +9,10 @@ export const connectDB = async () => {
   let uri = ENV.MONGODB_URI;
 
   if (!uri) {
+    if (ENV.NODE_ENV === 'production') {
+      logger.error('CRITICAL: MONGODB_URI is missing in production environment variables. Please add MONGODB_URI in the Render dashboard.');
+      throw new Error('MONGODB_URI is required in production.');
+    }
     if (!mongodInstance) {
       if (!mongodPromise) {
         logger.info('No MONGODB_URI provided. Initializing in-memory MongoDB instance...');
